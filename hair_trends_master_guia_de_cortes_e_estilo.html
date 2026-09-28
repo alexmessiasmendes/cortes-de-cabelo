@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIR TRENDS 2026 - Tendências & Estilo em Cortes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            glow: '#ffd700'
+                        },
+                        dark: {
+                            900: '#0b0f17',
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0f17;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #facc15 50%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(234, 179, 8, 0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 min-h-screen custom-scrollbar selection:bg-gold-500 selection:text-black">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 w-full glass-card border-b border-gray-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-gold-600 to-gold-400 flex items-center justify-center text-dark-900 font-extrabold text-xl shadow-lg shadow-gold-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid font-bold fa-scissors"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-2xl font-bold tracking-tight text-white block leading-none">CAPILLARY</span>
+                    <span class="text-[10px] tracking-widest text-gold-400 uppercase font-semibold">Hairstyles & Trends</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-gray-300">
+                <a href="#trends" class="hover:text-gold-400 transition-colors">Tendências</a>
+                <a href="#cuts" class="hover:text-gold-400 transition-colors">Galeria de Cortes</a>
+                <a href="#compare" class="hover:text-gold-400 transition-colors">Comparativo</a>
+                <a href="#quiz" class="hover:text-gold-400 transition-colors">Quiz Formato Rosto</a>
+                <a href="#stylists" class="hover:text-gold-400 transition-colors">Especialistas</a>
+                <a href="#reviews" class="hover:text-gold-400 transition-colors">Avaliações</a>
+            </nav>
+
+            <a href="#quiz" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-dark-900 font-bold px-5 py-2.5 rounded-full text-sm shadow-md hover:shadow-gold-500/20 transition-all transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Descubra Seu Corte
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-gray-800 bg-dark-900/95 px-4 pt-3 pb-6 space-y-3 text-center">
+            <a href="#trends" class="block py-2 text-gray-300 hover:text-gold-400 font-medium">Tendências</a>
+            <a href="#cuts" class="block py-2 text-gray-300 hover:text-gold-400 font-medium">Galeria de Cortes</a>
+            <a href="#compare" class="block py-2 text-gray-300 hover:text-gold-400 font-medium">Comparativo</a>
+            <a href="#quiz" class="block py-2 text-gray-300 hover:text-gold-400 font-medium">Quiz Rosto</a>
+            <a href="#stylists" class="block py-2 text-gray-300 hover:text-gold-400 font-medium">Especialistas</a>
+            <a href="#reviews" class="block py-2 text-gray-300 hover:text-gold-400 font-medium">Avaliações</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 md:py-28 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(#ca8a04_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-wider mb-6">
+                <i class="fa-solid fa-fire text-amber-500"></i> Relatório de Tendências de Visagismo 2026
+            </span>
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
+                O Guia Definitivo dos <span class="gold-gradient-text italic font-normal">Cortes Mais Populares</span> do Momento
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
+                Explore a evolução dos cortes masculinos e femininos de 2020 a 2026. Dados estatísticos, dicas de estilização, simulação por visagismo e recomendações de mestres da tesoura.
+            </p>
+
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <a href="#cuts" class="bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-gold-500/25 hover:scale-105 transition-all flex items-center gap-3 text-base">
+                    <i class="fa-solid fa-compass"></i> Explorar Galeria de Cortes
+                </a>
+                <a href="#quiz" class="glass-card hover:bg-dark-800 text-white font-semibold px-8 py-4 rounded-xl transition-all border border-gray-700 hover:border-gold-500/50 flex items-center gap-3 text-base">
+                    <i class="fa-solid fa-user-check text-gold-400"></i> Teste de Formato de Rosto
+                </a>
+            </div>
+
+            <!-- Stats Highlights -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card p-4 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-gold-400 font-serif">12+</div>
+                    <div class="text-xs text-gray-400 font-medium mt-1">Cortes em Alta</div>
+                </div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-gold-400 font-serif">98.4%</div>
+                    <div class="text-xs text-gray-400 font-medium mt-1">Precisão no Quiz</div>
+                </div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-gold-400 font-serif">2020 - 2026</div>
+                    <div class="text-xs text-gray-400 font-medium mt-1">Histórico Analisado</div>
+                </div>
+                <div class="glass-card p-4 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-gold-400 font-serif">15k+</div>
+                    <div class="text-xs text-gray-400 font-medium mt-1">Avaliações Coletadas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trends & Charts Section -->
+    <section id="trends" class="py-16 bg-dark-800/40 border-y border-gray-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Métricas & Evolução</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">Popularidade dos Cortes (2020 - 2026)</h2>
+                    <p class="text-gray-400 text-sm mt-2 max-w-xl">
+                        Acompanhe o volume de buscas, pedidos nos salões renomados e engajamento nas redes sociais nos últimos anos.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 bg-dark-900/80 p-1.5 rounded-xl border border-gray-700/80">
+                    <button id="chartFilterAll" onclick="updateChartCategory('all')" class="px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-gold-500 text-dark-900 shadow">Todos</button>
+                    <button id="chartFilterMasculine" onclick="updateChartCategory('masculino')" class="px-4 py-2 rounded-lg text-xs font-semibold text-gray-400 hover:text-white transition-all">Masculinos</button>
+                    <button id="chartFilterFeminine" onclick="updateChartCategory('feminino')" class="px-4 py-2 rounded-lg text-xs font-semibold text-gray-400 hover:text-white transition-all">Femininos</button>
+                </div>
+            </div>
+
+            <!-- Chart Container -->
+            <div class="glass-card p-6 rounded-2xl relative shadow-2xl">
+                <div class="h-80 sm:h-96 w-full">
+                    <canvas id="trendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Haircuts Gallery Section -->
+    <section id="cuts" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Catálogo Selecionado</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white mt-2">Cortes que Definem A Era Atual</h2>
+                <p class="text-gray-400 mt-4">Filtre por gênero e comprimento para encontrar a inspiração perfeita para o seu próximo visual.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center items-center gap-3 mb-10">
+                <!-- Gender Filter Buttons -->
+                <div class="flex bg-dark-800 p-1 rounded-xl border border-gray-700/80">
+                    <button onclick="filterCuts('gender', 'all', this)" class="cut-gender-btn active bg-gold-500 text-dark-900 px-4 py-2 rounded-lg text-xs font-bold transition-all">Todos Gêneros</button>
+                    <button onclick="filterCuts('gender', 'masculino', this)" class="cut-gender-btn text-gray-400 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all">Masculino</button>
+                    <button onclick="filterCuts('gender', 'feminino', this)" class="cut-gender-btn text-gray-400 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all">Feminino</button>
+                    <button onclick="filterCuts('gender', 'unissex', this)" class="cut-gender-btn text-gray-400 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all">Unissex</button>
+                </div>
+
+                <!-- Length Filter Buttons -->
+                <div class="flex bg-dark-800 p-1 rounded-xl border border-gray-700/80">
+                    <button onclick="filterCuts('length', 'all', this)" class="cut-length-btn active bg-gold-500 text-dark-900 px-4 py-2 rounded-lg text-xs font-bold transition-all">Todos Comprimentos</button>
+                    <button onclick="filterCuts('length', 'curto', this)" class="cut-length-btn text-gray-400 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all">Curto</button>
+                    <button onclick="filterCuts('length', 'médio', this)" class="cut-length-btn text-gray-400 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all">Médio</button>
+                    <button onclick="filterCuts('length', 'longo', this)" class="cut-length-btn text-gray-400 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all">Longo</button>
+                </div>
+            </div>
+
+            <!-- Haircuts Grid -->
+            <div id="cutsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic cards populated via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparative Table Section -->
+    <section id="compare" class="py-20 bg-dark-800/50 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Matriz Técnica</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-2">Tabela Comparativa de Manutenção e Estilo</h2>
+                <p class="text-gray-400 text-sm mt-2">Analise o tempo e a complexidade que cada corte exige da sua rotina.</p>
+            </div>
+
+            <!-- Table UI -->
+            <div class="glass-card rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-dark-900/90 text-gold-400 uppercase text-xs tracking-wider border-b border-gray-800">
+                                <th class="p-4 font-bold">Corte</th>
+                                <th class="p-4 font-bold">Gênero / Tipo</th>
+                                <th class="p-4 font-bold">Cabelo Ideal</th>
+                                <th class="p-4 font-bold">Nível de Manutenção</th>
+                                <th class="p-4 font-bold">Formato de Rosto</th>
+                                <th class="p-4 font-bold">Tempo Styling</th>
+                            </tr>
+                        </thead>
+                        <tbody id="compareTableBody" class="divide-y divide-gray-800 text-sm text-gray-300">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Quiz Simulator Section -->
+    <section id="quiz" class="py-20 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-gold-500/30 relative shadow-2xl">
+                <div class="absolute -top-12 -left-12 w-32 h-32 bg-gold-500/10 rounded-full blur-xl"></div>
+
+                <div class="text-center mb-8">
+                    <span class="px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Visagismo Inteligente
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-3">Descubra o Corte Ideal para o Seu Rosto</h2>
+                    <p class="text-gray-400 text-sm mt-2">Responda a 3 perguntas simples e receba a recomendação perfeita dos nossos esteticistas.</p>
+                </div>
+
+                <div id="quizContainer">
+                    <!-- Step Indicator -->
+                    <div class="flex justify-center items-center gap-2 mb-8">
+                        <div id="stepDot1" class="w-8 h-2 rounded-full bg-gold-500"></div>
+                        <div id="stepDot2" class="w-8 h-2 rounded-full bg-gray-700"></div>
+                        <div id="stepDot3" class="w-8 h-2 rounded-full bg-gray-700"></div>
+                    </div>
+
+                    <!-- Question 1 -->
+                    <div id="quizStep1" class="quiz-step space-y-4">
+                        <h3 class="text-lg font-semibold text-white text-center">1. Qual o formato principal do seu rosto?</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                            <button onclick="selectQuizAnswer('face', 'Oval')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-egg text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Oval</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('face', 'Redondo')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-regular fa-circle text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Redondo</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('face', 'Quadrado')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-regular fa-square text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Quadrado / Angular</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('face', 'Coração')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-regular fa-heart text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Coração / Diamante</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div id="quizStep2" class="quiz-step hidden space-y-4">
+                        <h3 class="text-lg font-semibold text-white text-center">2. Qual a textura natural do seu cabelo?</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                            <button onclick="selectQuizAnswer('hair', 'Liso')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-minus text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Liso</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('hair', 'Ondulado')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-water text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Ondulado</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('hair', 'Cacheado')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-arrows-spin text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Cacheado</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('hair', 'Crespo')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-asterisk text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Crespo / Afropuff</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div id="quizStep3" class="quiz-step hidden space-y-4">
+                        <h3 class="text-lg font-semibold text-white text-center">3. Qual a sua prioridade diária?</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                            <button onclick="selectQuizAnswer('goal', 'Praticidade')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-bolt text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Máxima Praticidade (0-5 min)</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('goal', 'Estilo Moderno')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-crown text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Estilo & Tendência Moda</span>
+                            </button>
+                            <button onclick="selectQuizAnswer('goal', 'Volume e Movimento')" class="quiz-opt-btn glass-card p-4 rounded-xl text-center hover:border-gold-500 transition-all group">
+                                <i class="fa-solid fa-wind text-2xl text-gray-400 group-hover:text-gold-400 mb-2 block"></i>
+                                <span class="text-sm font-medium">Volume & Movimento Natural</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Result Container -->
+                    <div id="quizResult" class="hidden text-center space-y-6 pt-4">
+                        <div class="w-16 h-16 bg-gold-500/20 text-gold-400 rounded-full flex items-center justify-center text-3xl mx-auto border border-gold-500/50">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white">Recomendação Personalizada</h3>
+                        <div id="quizResultContent" class="glass-card p-6 rounded-2xl text-left max-w-lg mx-auto border border-gold-500/30">
+                            <!-- Populated via JS -->
+                        </div>
+                        <button onclick="resetQuiz()" class="text-xs text-gold-400 hover:text-gold-300 underline uppercase tracking-wider font-semibold">
+                            <i class="fa-solid fa-rotate-left"></i> Refazer Teste
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stylists / Barbers Section -->
+    <section id="stylists" class="py-20 bg-dark-800/40 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Especialistas Acreditados</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">Cabeleireiros e Barbeiros Renomados</h2>
+                    <p class="text-gray-400 text-sm mt-2">Mestres em visagismo e referência nos cortes mais solicitados da atualidade.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Stylist 1 -->
+                <div class="glass-card rounded-2xl p-6 relative group hover:-translate-y-1 transition-all">
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Juliana Viana" class="w-16 h-16 rounded-full object-cover border-2 border-gold-500">
+                        <div>
+                            <h3 class="font-bold text-white text-lg">Juliana Viana</h3>
+                            <p class="text-xs text-gold-400 font-semibold">Especialista em Butterfly & Wolf Cut</p>
+                            <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-location-dot text-gold-500"></i> São Paulo, SP (Jardins)</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-300 mt-4 leading-relaxed">
+                        "Com mais de 12 anos no mercado, minha paixão é trazer textura, movimento natural e camadas estratégicas que valorizam a beleza única de cada cliente."
+                    </p>
+                    <div class="mt-6 flex items-center justify-between border-t border-gray-800 pt-4">
+                        <div class="flex text-amber-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-gray-400 font-semibold ml-1">(4.9/5)</span>
+                        </div>
+                        <button onclick="openBookingModal('Juliana Viana')" class="px-4 py-2 bg-gold-500 hover:bg-gold-400 text-dark-900 rounded-lg text-xs font-bold transition-all">
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stylist 2 -->
+                <div class="glass-card rounded-2xl p-6 relative group hover:-translate-y-1 transition-all">
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Marcus 'Blade' Silva" class="w-16 h-16 rounded-full object-cover border-2 border-gold-500">
+                        <div>
+                            <h3 class="font-bold text-white text-lg">Marcus "Blade" Silva</h3>
+                            <p class="text-xs text-gold-400 font-semibold">Master Fade & Buzz Cut Design</p>
+                            <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-location-dot text-gold-500"></i> Rio de Janeiro, RJ (Ipanema)</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-300 mt-4 leading-relaxed">
+                        "Pioneiro em táticas de degradê militar e sombra perfeita. Transformo o degradê em uma verdadeira arte adaptada à estrutura do crânio."
+                    </p>
+                    <div class="mt-6 flex items-center justify-between border-t border-gray-800 pt-4">
+                        <div class="flex text-amber-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text-gray-400 font-semibold ml-1">(5.0/5)</span>
+                        </div>
+                        <button onclick="openBookingModal('Marcus Blade Silva')" class="px-4 py-2 bg-gold-500 hover:bg-gold-400 text-dark-900 rounded-lg text-xs font-bold transition-all">
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stylist 3 -->
+                <div class="glass-card rounded-2xl p-6 relative group hover:-translate-y-1 transition-all">
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Camila Sampaio" class="w-16 h-16 rounded-full object-cover border-2 border-gold-500">
+                        <div>
+                            <h3 class="font-bold text-white text-lg">Camila Sampaio</h3>
+                            <p class="text-xs text-gold-400 font-semibold">Consultora de Visagismo & Bob Cut</p>
+                            <p class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-location-dot text-gold-500"></i> Curitiba, PR (Batel)</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-300 mt-4 leading-relaxed">
+                        "Focada em redefinição de imagem através de linhas geométricas precisas. Especialista na reinvenção dos cortes Bob e French Chic."
+                    </p>
+                    <div class="mt-6 flex items-center justify-between border-t border-gray-800 pt-4">
+                        <div class="flex text-amber-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="text-gray-400 font-semibold ml-1">(4.8/5)</span>
+                        </div>
+                        <button onclick="openBookingModal('Camila Sampaio')" class="px-4 py-2 bg-gold-500 hover:bg-gold-400 text-dark-900 rounded-lg text-xs font-bold transition-all">
+                            Agendar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-gold-400 font-semibold text-sm uppercase tracking-wider">Depoimentos Verificados</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">O Que Dizem Nossos Clientes</h2>
+                <p class="text-gray-400 text-sm mt-2">Experiências reais de quem transformou o visual acompanhando nossas tendências.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-xs gap-1 mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs text-gray-300 italic leading-relaxed">
+                            "Adoeci pelo Wolf Cut e fiz o teste do formato de rosto aqui. Deu certinho para meu rosto oval! Levei o card do site para o meu cabeleireiro e o resultado ficou incrível."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t border-gray-800">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="text-xs font-bold text-white">Fernanda Lima</p>
+                            <p class="text-[10px] text-gray-500">Corte: Wolf Cut Moderno</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-xs gap-1 mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs text-gray-300 italic leading-relaxed">
+                            "Sempre tive dúvidas sobre qual fade combinava melhor com meu formato de crânio. O gráfico de tendências e a tabela explicativa facilitaram muito a escolha."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t border-gray-800">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="text-xs font-bold text-white">Rodrigo Alves</p>
+                            <p class="text-[10px] text-gray-500">Corte: Low Fade Texturizado</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-xs gap-1 mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs text-gray-300 italic leading-relaxed">
+                            "Adorei as recomendações de profissionais. Consegui simular o agendamento direto pelo portal e fui super bem atendida na Camila Sampaio. Nota 10!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 mt-6 pt-4 border-t border-gray-800">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <p class="text-xs font-bold text-white">Beatriz Mendez</p>
+                            <p class="text-[10px] text-gray-500">Corte: French Bob</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 bg-dark-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <div class="flex items-center justify-center md:justify-start gap-2">
+                    <i class="fa-solid fa-scissors text-gold-400 text-lg"></i>
+                    <span class="font-serif font-bold text-white text-lg">CAPILLARY TRENDS</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">Plataforma de tendências, visagismo e inspiração capilar.</p>
+            </div>
+            <p class="text-xs text-gray-500">© 2026 Capillary Trends Inc. Todos os direitos reservados.</p>
+            <div class="flex gap-4 text-gray-400 text-lg">
+                <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-pinterest"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cut Details Modal -->
+    <div id="cutModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-card bg-dark-900 border border-gray-800 rounded-3xl max-w-2xl w-full overflow-hidden relative shadow-2xl animate-fade-in">
+            <button onclick="closeModal('cutModal')" class="absolute top-4 right-4 z-10 bg-dark-800/80 hover:bg-dark-700 text-gray-300 hover:text-white w-9 h-9 rounded-full flex items-center justify-center border border-gray-700">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalContent" class="max-h-[85vh] overflow-y-auto custom-scrollbar">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-card bg-dark-900 border border-gray-800 rounded-3xl max-w-md w-full p-6 relative shadow-2xl">
+            <button onclick="closeModal('bookingModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="font-serif text-xl font-bold text-white mb-1">Simular Agendamento</h3>
+            <p class="text-xs text-gray-400 mb-4">Agende com <span id="bookingStylistName" class="text-gold-400 font-semibold"></span></p>
+
+            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Seu Nome</label>
+                    <input type="text" required placeholder="Digite seu nome" class="w-full bg-dark-800 border border-gray-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Data Preferida</label>
+                    <input type="date" required class="w-full bg-dark-800 border border-gray-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Corte Desejado</label>
+                    <select class="w-full bg-dark-800 border border-gray-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-gold-500">
+                        <option>Wolf Cut Moderno</option>
+                        <option>Mid Fade / Sombra</option>
+                        <option>Butterfly Cut</option>
+                        <option>French Bob</option>
+                        <option>Buzz Cut Texturizado</option>
+                        <option>Mullet Moderno</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 text-dark-900 font-bold py-3 rounded-xl hover:from-gold-400 hover:to-gold-500 transition-all text-sm mt-2">
+                    Confirmar Solicitação
+                </button>
+            </form>
+            <div id="bookingSuccessMessage" class="hidden mt-4 p-3 bg-emerald-500/20 border border-emerald-500/40 rounded-xl text-emerald-400 text-xs text-center">
+                <i class="fa-solid fa-circle-check"></i> Agendamento simulado com sucesso!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Store for Haircuts
+        const haircutsData = [
+            {
+                id: 'wolf-cut',
+                name: 'Wolf Cut Moderno',
+                gender: 'unissex',
+                length: 'médio',
+                peakYear: '2023 - 2026',
+                idealHair: 'Liso, Ondulado ou Cacheado',
+                maintenance: 'Média',
+                faceShape: 'Oval, Coração, Quadrado',
+                stylingTime: '10 - 15 min',
+                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=600&q=80',
+                description: 'A fusão perfeita entre o Shag retro e o Mullet moderno. Possui camadas desconectadas no topo e pontas desfiadas para dar volume e movimento despojado.',
+                tips: 'Use pomada texturizadora leve ou mousse para ativar a textura das camadas soltas.'
+            },
+            {
+                id: 'mid-fade',
+                name: 'Mid Fade / Degradê',
+                gender: 'masculino',
+                length: 'curto',
+                peakYear: '2020 - 2026',
+                idealHair: 'Todos os tipos',
+                maintenance: 'Alta (15 dias)',
+                faceShape: 'Oval, Redondo, Quadrado',
+                stylingTime: '5 min',
+                image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80',
+                description: 'O clássico degradê na altura média da cabeça. Proporciona transição suave da pele até o volume do topo, garantindo aspecto limpo e sofisticado.',
+                tips: 'Aplique pó de textura (texture powder) no topo para efeito fosco e natural.'
+            },
+            {
+                id: 'butterfly-cut',
+                name: 'Butterfly Cut',
+                gender: 'feminino',
+                length: 'longo',
+                peakYear: '2024 - 2026',
+                idealHair: 'Liso a Ondulado',
+                maintenance: 'Média',
+                faceShape: 'Oval, Quadrado, Longo',
+                stylingTime: '15 - 20 min',
+                image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80',
+                description: 'Corte em camadas longas e fluídas que emolduram o rosto como asas de borboleta, dando ilusão de cabelo curto na frente e longo atrás.',
+                tips: 'Escove as franjas para fora usando uma escova redonda grande para efeito volumoso de salão.'
+            },
+            {
+                id: 'buzz-cut',
+                name: 'Buzz Cut Crop',
+                gender: 'masculino',
+                length: 'curto',
+                peakYear: '2022 - 2026',
+                idealHair: 'Todos os tipos',
+                maintenance: 'Baixa',
+                faceShape: 'Oval, Angular',
+                stylingTime: '0 - 2 min',
+                image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80',
+                description: 'Corte raspado uniforme com pezinho alinhado e leve degradê lateral. Sinônimo de praticidade e estética minimalista contemporânea.',
+                tips: 'Mantenha o couro cabeludo hidratado e aplique protetor solar capilar diariamente.'
+            },
+            {
+                id: 'french-bob',
+                name: 'French Bob com Franja',
+                gender: 'feminino',
+                length: 'curto',
+                peakYear: '2021 - 2026',
+                idealHair: 'Liso a Ligeiramente Ondulado',
+                maintenance: 'Média/Alta',
+                faceShape: 'Oval, Coração',
+                stylingTime: '8 - 10 min',
+                image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80',
+                description: 'Um clássico parisiense cortado na altura dos lábios ou queixo, acompanhado de franja leve sobre as sobrancelhas.',
+                tips: 'Deixe secar naturalmente com um leave-in leve para um acabamento chique e descontraído.'
+            },
+            {
+                id: 'mullet-moderno',
+                name: 'Mullet Moderno',
+                gender: 'unissex',
+                length: 'médio',
+                peakYear: '2022 - 2026',
+                idealHair: 'Ondulado, Cacheado ou Liso',
+                maintenance: 'Média',
+                faceShape: 'Oval, Quadrado',
+                stylingTime: '10 min',
+                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+                description: 'Reinterpretação do estilo anos 80, mantendo laterais curtas e nuca e topo mais compridos e texturizados.',
+                tips: 'Use ativador de cachos ou spray de sal marinho para realçar o balanço na nuca.'
+            }
+        ];
+
+        let activeGenderFilter = 'all';
+        let activeLengthFilter = 'all';
+        let trendsChart = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCutsGrid();
+            renderCompareTable();
+            initChart();
+            setupMobileMenu();
+        });
+
+        // Mobile Menu Toggle
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        }
+
+        // Render Cuts Grid
+        function renderCutsGrid() {
+            const container = document.getElementById('cutsGrid');
+            if (!container) return;
+
+            const filtered = haircutsData.filter(cut => {
+                const genderMatch = activeGenderFilter === 'all' || cut.gender === activeGenderFilter || cut.gender === 'unissex';
+                const lengthMatch = activeLengthFilter === 'all' || cut.length === activeLengthFilter;
+                return genderMatch && lengthMatch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-gray-500">
+                        <i class="fa-solid fa-scissors text-3xl mb-3 block"></i>
+                        Nenhum corte encontrado para os filtros selecionados.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(cut => `
+                <div class="glass-card rounded-2xl overflow-hidden group hover:shadow-2xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="${cut.image}" alt="${cut.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 right-3 bg-dark-900/80 backdrop-blur-md text-gold-400 border border-gold-500/30 text-[10px] uppercase font-bold px-3 py-1 rounded-full">
+                                Aufe: ${cut.peakYear}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between text-xs text-gray-400 mb-2">
+                                <span class="uppercase tracking-wider font-semibold text-gold-400">${cut.gender}</span>
+                                <span><i class="fa-solid fa-ruler-vertical"></i> ${cut.length}</span>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold text-white mb-2 group-hover:text-gold-400 transition-colors">${cut.name}</h3>
+                            <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-4">${cut.description}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button onclick="openCutModal('${cut.id}')" class="w-full bg-dark-800 hover:bg-gold-500 text-gray-200 hover:text-dark-900 border border-gray-700 hover:border-gold-500 font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-circle-info"></i> Ver Detalhes e Styling
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter Handlers
+        function filterCuts(type, value, btn) {
+            if (type === 'gender') {
+                activeGenderFilter = value;
+                document.querySelectorAll('.cut-gender-btn').forEach(b => {
+                    b.classList.remove('bg-gold-500', 'text-dark-900');
+                    b.classList.add('text-gray-400');
+                });
+            } else if (type === 'length') {
+                activeLengthFilter = value;
+                document.querySelectorAll('.cut-length-btn').forEach(b => {
+                    b.classList.remove('bg-gold-500', 'text-dark-900');
+                    b.classList.add('text-gray-400');
+                });
+            }
+            btn.classList.add('bg-gold-500', 'text-dark-900');
+            btn.classList.remove('text-gray-400');
+            renderCutsGrid();
+        }
+
+        function renderCompareTable() {
+            const tbody = document.getElementById('compareTableBody');
+            if (!tbody) return;
+
+            tbody.innerHTML = haircutsData.map(cut => `
+                <tr class="hover:bg-dark-800/60 transition-colors">
+                    <td class="p-4 font-bold text-white">${cut.name}</td>
+                    <td class="p-4 capitalize text-xs">${cut.gender}</td>
+                    <td class="p-4 text-xs">${cut.idealHair}</td>
+                    <td class="p-4 text-xs">
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${cut.maintenance.includes('Alta') ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'}">
+                            ${cut.maintenance}
+                        </span>
+                    </td>
+                    <td class="p-4 text-xs">${cut.faceShape}</td>
+                    <td class="p-4 text-xs text-gold-400 font-semibold">${cut.stylingTime}</td>
+                </tr>
+            `).join('');
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('trendsChart');
+            if (!ctx) return;
+
+            const years = ['2020', '2021', '2022', '2023', '2024', '2025', '2026'];
+
+            trendsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [
+                        {
+                            label: 'Wolf Cut',
+                            data: [15, 30, 75, 95, 90, 88, 85],
+                            borderColor: '#facc15',
+                            backgroundColor: 'rgba(250, 204, 21, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            category: 'unissex'
+                        },
+                        {
+                            label: 'Mid Fade',
+                            data: [80, 85, 88, 90, 92, 94, 96],
+                            borderColor: '#38bdf8',
+                            backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            category: 'masculino'
+                        },
+                        {
+                            label: 'Butterfly Cut',
+                            data: [5, 10, 25, 60, 88, 95, 98],
+                            borderColor: '#ec4899',
+                            backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            category: 'feminino'
+                        },
+                        {
+                            label: 'French Bob',
+                            data: [40, 55, 70, 68, 75, 80, 82],
+                            borderColor: '#a855f7',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            category: 'feminino'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#9ca3af',
+                                font: { family: 'Inter', size: 12 }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#111827',
+                            titleColor: '#facc15',
+                            bodyColor: '#fff',
+                            borderColor: '#374151',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#9ca3af' }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#9ca3af' },
+                            title: { display: true, text: 'Índice de Popularidade (%)', color: '#6b7280' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartCategory(cat) {
+            document.querySelectorAll('#trends button').forEach(b => {
+                b.classList.remove('bg-gold-500', 'text-dark-900');
+                b.classList.add('text-gray-400');
+            });
+
+            if (cat === 'all') {
+                document.getElementById('chartFilterAll').classList.add('bg-gold-500', 'text-dark-900');
+            } else if (cat === 'masculino') {
+                document.getElementById('chartFilterMasculine').classList.add('bg-gold-500', 'text-dark-900');
+            } else {
+                document.getElementById('chartFilterFeminine').classList.add('bg-gold-500', 'text-dark-900');
+            }
+
+            if (trendsChart) {
+                trendsChart.data.datasets.forEach(ds => {
+                    if (cat === 'all' || ds.category === cat || ds.category === 'unissex') {
+                        ds.hidden = false;
+                    } else {
+                        ds.hidden = true;
+                    }
+                });
+                trendsChart.update();
+            }
+        }
+
+        let quizState = { face: '', hair: '', goal: '' };
+
+        function selectQuizAnswer(field, val) {
+            quizState[field] = val;
+
+            if (field === 'face') {
+                document.getElementById('quizStep1').classList.add('hidden');
+                document.getElementById('quizStep2').classList.remove('hidden');
+                document.getElementById('stepDot2').classList.add('bg-gold-500');
+            } else if (field === 'hair') {
+                document.getElementById('quizStep2').classList.add('hidden');
+                document.getElementById('quizStep3').classList.remove('hidden');
+                document.getElementById('stepDot3').classList.add('bg-gold-500');
+            } else if (field === 'goal') {
+                document.getElementById('quizStep3').classList.add('hidden');
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            const resContainer = document.getElementById('quizResult');
+            const resContent = document.getElementById('quizResultContent');
+            resContainer.classList.remove('hidden');
+
+            let recommendedCut = haircutsData[0]; // fallback
+            if (quizState.face === 'Oval' || quizState.goal === 'Volume e Movimento') {
+                recommendedCut = haircutsData.find(c => c.id === 'butterfly-cut') || haircutsData[0];
+            } else if (quizState.goal === 'Praticidade') {
+                recommendedCut = haircutsData.find(c => c.id === 'buzz-cut') || haircutsData[1];
+            } else if (quizState.face === 'Quadrado' || quizState.face === 'Redondo') {
+                recommendedCut = haircutsData.find(c => c.id === 'mid-fade') || haircutsData[1];
+            }
+
+            resContent.innerHTML = `
+                <div class="flex items-center gap-4 mb-4">
+                    <img src="${recommendedCut.image}" class="w-16 h-16 rounded-xl object-cover border border-gold-500">
+                    <div>
+                        <h4 class="font-bold text-white text-lg">${recommendedCut.name}</h4>
+                        <p class="text-xs text-gold-400 font-semibold">Match Ideal para Rosto ${quizState.face}</p>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-300 leading-relaxed mb-3">${recommendedCut.description}</p>
+                <div class="bg-dark-900/80 p-3 rounded-xl border border-gray-800 text-[11px] text-gray-400">
+                    <strong class="text-white block mb-1">Dica do Especialista:</strong>
+                    ${recommendedCut.tips}
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            quizState = { face: '', hair: '', goal: '' };
+            document.getElementById('quizResult').classList.add('hidden');
+            document.getElementById('quizStep1').classList.remove('hidden');
+            document.getElementById('quizStep2').classList.add('hidden');
+            document.getElementById('quizStep3').classList.add('hidden');
+
+            document.getElementById('stepDot2').classList.remove('bg-gold-500');
+            document.getElementById('stepDot3').classList.remove('bg-gold-500');
+        }
+
+        function openCutModal(cutId) {
+            const cut = haircutsData.find(c => c.id === cutId);
+            if (!cut) return;
+
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <div class="relative h-72">
+                    <img src="${cut.image}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="bg-gold-500 text-dark-900 text-[10px] uppercase font-bold px-3 py-1 rounded-full">
+                            Pico de Popularidade: ${cut.peakYear}
+                        </span>
+                        <h3 class="font-serif text-3xl font-bold text-white mt-2">${cut.name}</h3>
+                    </div>
+                </div>
+                <div class="p-6 space-y-6">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="bg-dark-800 p-3 rounded-xl border border-gray-800">
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold block">Gênero</span>
+                            <span class="text-xs font-bold text-white capitalize">${cut.gender}</span>
+                        </div>
+                        <div class="bg-dark-800 p-3 rounded-xl border border-gray-800">
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold block">Comprimento</span>
+                            <span class="text-xs font-bold text-white capitalize">${cut.length}</span>
+                        </div>
+                        <div class="bg-dark-800 p-3 rounded-xl border border-gray-800">
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold block">Manutenção</span>
+                            <span class="text-xs font-bold text-white">${cut.maintenance}</span>
+                        </div>
+                        <div class="bg-dark-800 p-3 rounded-xl border border-gray-800">
+                            <span class="text-[10px] text-gray-400 uppercase font-semibold block">Styling</span>
+                            <span class="text-xs font-bold text-gold-400">${cut.stylingTime}</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-2">Descrição do Estilo</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">${cut.description}</p>
+                    </div>
+
+                    <div class="bg-gold-500/10 border border-gold-500/30 p-4 rounded-xl">
+                        <h4 class="text-xs font-bold text-gold-400 uppercase tracking-wider mb-1">
+                            <i class="fa-solid fa-lightbulb"></i> Recomendação de Styling
+                        </h4>
+                        <p class="text-xs text-gray-300">${cut.tips}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-2">Formato de Rosto Recomendado</h4>
+                        <p class="text-xs text-gray-300">${cut.faceShape}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('cutModal').classList.remove('hidden');
+        }
+
+        function openBookingModal(stylistName) {
+            document.getElementById('bookingStylistName').innerText = stylistName;
+            document.getElementById('bookingSuccessMessage').classList.add('hidden');
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            document.getElementById('bookingSuccessMessage').classList.remove('hidden');
+            setTimeout(() => {
+                closeModal('bookingModal');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
