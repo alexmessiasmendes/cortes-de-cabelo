@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HairStyle AI - Catálogo Mundial de Cortes & Diagnóstico Visagista</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        },
+                        dark: {
+                            900: '#0b0f17',
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #facc15 0%, #ca8a04 100%);
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-gold-500 selection:text-black">
+
+    <header class="sticky top-0 z-40 glass-panel border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('catalog')">
+                <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-dark-900 shadow-lg shadow-gold-500/20">
+                    <i data-lucide="scissors" class="w-5 h-5 font-bold"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold font-serif tracking-tight gold-gradient-text">HAIRVISAGE</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-gray-400 font-semibold">World Studio & AI Diagnostic</span>
+                </div>
+            </div>
+
+            <!-- Main Navigation Links -->
+            <nav class="hidden md:flex items-center gap-1 bg-dark-800/80 p-1.5 rounded-full border border-gray-800">
+                <button id="nav-catalog" onclick="switchTab('catalog')" class="px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gold-500 text-dark-900 font-semibold shadow">
+                    <i data-lucide="grid" class="w-4 h-4 inline-block mr-1.5"></i> Catálogo Mundial
+                </button>
+                <button id="nav-quiz" onclick="switchTab('quiz')" class="px-5 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-all duration-200 hover:bg-gray-800/60">
+                    <i data-lucide="sparkles" class="w-4 h-4 inline-block mr-1.5 text-gold-400"></i> Teste Visagista (15 Qs)
+                </button>
+                <button id="nav-favorites" onclick="switchTab('favorites')" class="px-5 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-all duration-200 hover:bg-gray-800/60 relative">
+                    <i data-lucide="bookmark" class="w-4 h-4 inline-block mr-1.5 text-rose-400"></i> Salvos
+                    <span id="fav-count-badge" class="ml-1.5 bg-rose-500 text-white text-xs px-1.5 py-0.5 rounded-full hidden">0</span>
+                </button>
+            </nav>
+
+            <!-- Quick Action CTA -->
+            <button onclick="startQuiz()" class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gold-500/40 hover:border-gold-400 text-gold-400 hover:text-gold-300 bg-gold-500/10 hover:bg-gold-500/20 text-xs font-semibold tracking-wider uppercase transition-all duration-300">
+                <i data-lucide="wand-2" class="w-4 h-4"></i>
+                Descobrir Meu Corte
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ================= CATALOG VIEW ================= -->
+        <section id="view-catalog" class="space-y-8">
+            <!-- Hero Banner -->
+            <div class="relative rounded-3xl overflow-hidden border border-gray-800 bg-gradient-to-r from-dark-800 via-dark-800/90 to-dark-900 p-8 md:p-12 shadow-2xl">
+                <div class="absolute -right-20 -top-20 w-80 h-80 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="max-w-2xl relative z-10 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-wider">
+                        <i data-lucide="globe" class="w-3.5 h-3.5"></i> Arquivo Global de Visagismo
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold font-serif text-white tracking-tight leading-tight">
+                        Encontre o Corte Perfeito para a sua <span class="gold-gradient-text">Fisionomia Única</span>.
+                    </h1>
+                    <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                        Explore centenas de estilos masculinos e femininos de todas as culturas. Utilize nossos filtros avançados de formato de rosto, textura de cabelo e nível de manutenção.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="startQuiz()" class="px-6 py-3 rounded-xl gold-gradient-bg text-dark-900 font-bold text-sm shadow-xl shadow-gold-500/20 hover:scale-105 transition-all duration-200 flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i> Fazer Diagnóstico Visagista
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters & Search Toolbar -->
+            <div class="glass-panel p-5 rounded-2xl space-y-4">
+                <!-- Search & Gender Toggle -->
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Search Input -->
+                    <div class="relative w-full md:w-96">
+                        <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="catalog-search" oninput="applyFilters()" placeholder="Buscar corte por nome, estilo ou país..." 
+                            class="w-full pl-10 pr-4 py-2.5 bg-dark-900/80 border border-gray-700/80 rounded-xl text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-gold-500 transition-colors">
+                    </div>
+
+                    <!-- Gender Tabs -->
+                    <div class="flex bg-dark-900/90 p-1 rounded-xl border border-gray-800 w-full md:w-auto">
+                        <button onclick="setGenderFilter('all')" id="gender-all" class="gender-btn flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-semibold transition-all bg-gold-500 text-dark-900">Todos</button>
+                        <button onclick="setGenderFilter('masculino')" id="gender-masculino" class="gender-btn flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-semibold text-gray-400 hover:text-white transition-all">Masculino</button>
+                        <button onclick="setGenderFilter('feminino')" id="gender-feminino" class="gender-btn flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-semibold text-gray-400 hover:text-white transition-all">Feminino</button>
+                        <button onclick="setGenderFilter('unissex')" id="gender-unissex" class="gender-btn flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-semibold text-gray-400 hover:text-white transition-all">Unissex</button>
+                    </div>
+                </div>
+
+                <!-- Dropdown Filters -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-gray-800/80">
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold text-gray-400 mb-1">Formato do Rosto</label>
+                        <select id="filter-face" onchange="applyFilters()" class="w-full bg-dark-900 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300 focus:border-gold-500 outline-none">
+                            <option value="">Todos os Formatos</option>
+                            <option value="Oval">Oval</option>
+                            <option value="Redondo">Redondo</option>
+                            <option value="Quadrado">Quadrado</option>
+                            <option value="Coração">Coração</option>
+                            <option value="Diamante">Diamante</option>
+                            <option value="Triangular">Triangular</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold text-gray-400 mb-1">Tipo de Cabelo</label>
+                        <select id="filter-hair" onchange="applyFilters()" class="w-full bg-dark-900 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300 focus:border-gold-500 outline-none">
+                            <option value="">Todas as Texturas</option>
+                            <option value="Liso">Liso</option>
+                            <option value="Ondulado">Ondulado</option>
+                            <option value="Cacheado">Cacheado</option>
+                            <option value="Crespo">Crespo</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold text-gray-400 mb-1">Comprimento</label>
+                        <select id="filter-length" onchange="applyFilters()" class="w-full bg-dark-900 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300 focus:border-gold-500 outline-none">
+                            <option value="">Qualquer Comprimento</option>
+                            <option value="Curto">Curto / Muito Curto</option>
+                            <option value="Médio">Médio</option>
+                            <option value="Longo">Longo</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] uppercase font-bold text-gray-400 mb-1">Manutenção</label>
+                        <select id="filter-maintenance" onchange="applyFilters()" class="w-full bg-dark-900 border border-gray-800 rounded-lg px-3 py-2 text-xs text-gray-300 focus:border-gold-500 outline-none">
+                            <option value="">Qualquer Nível</option>
+                            <option value="Baixa">Baixa (Prático)</option>
+                            <option value="Média">Média</option>
+                            <option value="Alta">Alta (Styling Diário)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counter and Results Grid -->
+            <div class="flex items-center justify-between text-xs text-gray-400 font-medium px-1">
+                <span>Exibindo <strong id="cuts-counter" class="text-gold-400">0</strong> cortes de cabelo</span>
+                <button onclick="resetFilters()" class="hover:text-gold-400 underline transition-colors">Limpar filtros</button>
+            </div>
+
+            <!-- Haircut Cards Grid -->
+            <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- ================= QUIZ QUESTIONNAIRE VIEW ================= -->
+        <section id="view-quiz" class="hidden max-w-3xl mx-auto space-y-6">
+            <!-- Quiz Card Header -->
+            <div class="text-center space-y-2 mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Algoritmo Visagista Inteligente
+                </div>
+                <h2 class="text-2xl md:text-4xl font-serif font-bold text-white">Diagnóstico Capilar Personalizado</h2>
+                <p class="text-gray-400 text-xs md:text-sm">Responda a 15 perguntas rápidas para encontrarmos a combinação perfeita para sua fisionomia.</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="glass-panel p-4 rounded-2xl space-y-2">
+                <div class="flex justify-between items-center text-xs font-bold text-gray-400">
+                    <span id="quiz-step-indicator">Pergunta 1 de 15</span>
+                    <span id="quiz-percent-text" class="text-gold-400">7% Concluído</span>
+                </div>
+                <div class="w-full h-2 bg-dark-900 rounded-full overflow-hidden border border-gray-800">
+                    <div id="quiz-progress-bar" class="h-full gold-gradient-bg transition-all duration-300" style="width: 6.66%;"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Step Container -->
+            <div id="quiz-card" class="glass-panel p-6 md:p-8 rounded-3xl border border-gray-800/80 shadow-2xl space-y-6">
+                <!-- Question Title & Subtitle -->
+                <div class="space-y-1">
+                    <span id="q-category" class="text-[10px] uppercase font-bold tracking-widest text-gold-500">Categoria</span>
+                    <h3 id="q-title" class="text-xl md:text-2xl font-serif font-bold text-white">Pergunta aqui...</h3>
+                    <p id="q-desc" class="text-xs text-gray-400">Explicação breve para guiar a escolha...</p>
+                </div>
+
+                <!-- Options List Grid -->
+                <div id="q-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Dynamic Option Buttons injected by JS -->
+                </div>
+
+                <!-- Quiz Navigation Buttons -->
+                <div class="flex justify-between items-center pt-4 border-t border-gray-800/80">
+                    <button id="quiz-prev-btn" onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl border border-gray-700 text-gray-400 hover:text-white hover:bg-gray-800 text-xs font-semibold transition-all flex items-center gap-2">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Anterior
+                    </button>
+                    <button id="quiz-next-btn" onclick="nextQuestion()" disabled class="px-6 py-2.5 rounded-xl gold-gradient-bg text-dark-900 opacity-50 cursor-not-allowed text-xs font-bold transition-all flex items-center gap-2">
+                        Próxima <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= QUIZ RESULTS VIEW ================= -->
+        <section id="view-results" class="hidden space-y-8">
+            <!-- Results Header -->
+            <div class="glass-panel p-8 rounded-3xl border border-gold-500/30 text-center space-y-3 relative overflow-hidden">
+                <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-96 h-32 bg-gold-500/20 rounded-full blur-3xl"></div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 text-gold-400 text-xs font-semibold border border-gold-500/30">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i> Análise Concluída com Sucesso
+                </div>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Seus Cortes de Maior Compatibilidade</h2>
+                <p class="text-gray-400 text-sm max-w-xl mx-auto">Com base no formato do seu rosto, textura capilar, rotina e objetivos de imagem, aqui estão suas melhores escolhas:</p>
+                <div class="pt-2 flex justify-center gap-3">
+                    <button onclick="startQuiz()" class="px-4 py-2 rounded-xl bg-dark-800 hover:bg-gray-800 border border-gray-700 text-xs text-gray-300 transition-all flex items-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Refazer Teste
+                    </button>
+                </div>
+            </div>
+
+            <!-- Top 3 Recommendation Cards -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold font-serif text-gold-400 flex items-center gap-2">
+                    <i data-lucide="trophy" class="w-5 h-5"></i> Top 3 Selecionados Pelo Diagnóstico
+                </h3>
+                <div id="top-matches-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Other Compatible Cuts -->
+            <div class="space-y-4 pt-6">
+                <h3 class="text-base font-bold text-gray-300">Outras Opções Compatíveis</h3>
+                <div id="other-matches-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FAVORITES VIEW ================= -->
+        <section id="view-favorites" class="hidden space-y-6">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-white">Seus Cortes Favoritos</h2>
+                    <p class="text-xs text-gray-400">Guarde seus cortes preferidos para levar de referência ao seu cabeleireiro ou barbeiro.</p>
+                </div>
+            </div>
+            
+            <div id="favorites-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <div id="haircut-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel border border-gray-700/80 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 space-y-6 relative text-gray-200">
+            <!-- Close Modal Button -->
+            <button onclick="closeModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-dark-900 border border-gray-700 text-gray-400 hover:text-white flex items-center justify-center transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Header Content -->
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+                <img id="m-image" src="" alt="Corte" class="w-full sm:w-48 h-56 object-cover rounded-2xl border border-gray-800 shadow-md">
+                <div class="space-y-3 flex-1">
+                    <div class="flex items-center gap-2">
+                        <span id="m-gender" class="px-2.5 py-0.5 rounded-full bg-gold-500/20 text-gold-400 text-[10px] font-bold uppercase tracking-wider">Gênero</span>
+                        <span id="m-origin" class="text-xs text-gray-400 font-medium">Estilo / Origem</span>
+                    </div>
+                    <h3 id="m-title" class="text-2xl font-serif font-bold text-white">Nome do Corte</h3>
+                    <p id="m-desc" class="text-xs text-gray-300 leading-relaxed">Descrição detalhada do estilo...</p>
+                    
+                    <div class="pt-2 flex flex-wrap gap-2">
+                        <button id="m-fav-btn" onclick="" class="px-4 py-2 rounded-xl bg-dark-900 border border-gray-700 hover:border-gold-500 text-xs font-semibold text-gray-300 flex items-center gap-1.5 transition-colors">
+                            <i data-lucide="bookmark" class="w-4 h-4"></i> Favoritar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visagism Attributes Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 bg-dark-900/90 rounded-2xl border border-gray-800/80 text-xs">
+                <div>
+                    <span class="block text-gray-500 text-[10px] uppercase font-bold">Rostos Ideais</span>
+                    <span id="m-faces" class="font-semibold text-gold-400">Oval, Quadrado</span>
+                </div>
+                <div>
+                    <span class="block text-gray-500 text-[10px] uppercase font-bold">Textura de Cabelo</span>
+                    <span id="m-hair" class="font-semibold text-gray-200">Liso, Ondulado</span>
+                </div>
+                <div>
+                    <span class="block text-gray-500 text-[10px] uppercase font-bold">Manutenção</span>
+                    <span id="m-maintenance" class="font-semibold text-gray-200">Baixa</span>
+                </div>
+            </div>
+
+            <!-- Styling Tips & Products -->
+            <div class="space-y-2">
+                <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-gold-400"></i> Dicas de Estilização & Pomada
+                </h4>
+                <p id="m-tips" class="text-xs text-gray-400 leading-relaxed bg-dark-900/50 p-3.5 rounded-xl border border-gray-800">
+                    Use pomada de efeito fosco (matte) no cabelo levemente úmido para fixação natural...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-auto border-t border-gray-800/80 bg-dark-900/80 py-8 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>© 2026 HairStyle AI Studio — Guia Visagista Mundial de Cortes de Cabelo.</p>
+            <p class="text-[11px] text-gray-600">Projetado com algoritmo de diagnóstico fisionômico para homens e mulheres.</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ==========================================================================
+           1. WORLD HAIRCUTS DATABASE (MASCULINO, FEMININO & UNISSEX)
+           ========================================================================== */
+        const HAIRCUTS_DB = [
+            // MASCULINOS
+            {
+                id: 'm1',
+                name: 'Degradê / Low Fade Taper',
+                gender: 'Masculino',
+                category: 'Curto',
+                origin: 'EUA / Barbershop Urbana',
+                faces: ['Oval', 'Redondo', 'Quadrado', 'Diamante'],
+                hairTypes: ['Liso', 'Ondulado', 'Cacheado', 'Crespo'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80',
+                desc: 'Laterais raspadas gradualmente com acabamento limpo na nuca e patilhas. Preserva volume no topo com transição suave.',
+                tips: 'Requer manutenção a cada 2 a 3 semanas. Use cera matte no topo para alinhar a textura.'
+            },
+            {
+                id: 'm2',
+                name: 'Korean Two-Block',
+                gender: 'Masculino',
+                category: 'Médio',
+                origin: 'Coreia do Sul / K-Style',
+                faces: ['Oval', 'Coração', 'Diamante', 'Triangular'],
+                hairTypes: ['Liso', 'Ondulado'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+                desc: 'Laterais e nuca cortadas curtas ou raspadas sob um topo longo e encorpado que cai em camadas leves.',
+                tips: 'Seque com secador direcionando a franja para frente ou levemente dividida ao meio.'
+            },
+            {
+                id: 'm3',
+                name: 'Pompadour Moderno',
+                gender: 'Masculino',
+                category: 'Médio',
+                origin: 'Clássico / Europa',
+                faces: ['Oval', 'Redondo', 'Quadrado'],
+                hairTypes: ['Liso', 'Ondulado'],
+                maintenance: 'Alta',
+                image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80',
+                desc: 'Volume elevado na parte frontal jogado para trás, mantendo as laterais alinhadas ou em fita degradê.',
+                tips: 'Essencial o uso de escova redonda com secador quente e pomada de alta fixação.'
+            },
+            {
+                id: 'm4',
+                name: 'French Crop Texturizado',
+                gender: 'Masculino',
+                category: 'Curto',
+                origin: 'França / Europa',
+                faces: ['Oval', 'Quadrado', 'Coração', 'Triangular'],
+                hairTypes: ['Liso', 'Ondulado', 'Cacheado'],
+                maintenance: 'Baixa',
+                image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+                desc: 'Franja reta ou desfiada curta com laterais em degradê. Excelente para disfarçar entradas ou testa alta.',
+                tips: 'Pó de textura (hair powder) ou pomada de efeito seco para destacar as camadas.'
+            },
+            {
+                id: 'm5',
+                name: 'Afro Flattop & Taper Fade',
+                gender: 'Masculino',
+                category: 'Curto',
+                origin: 'Afro-Americano / Retrô',
+                faces: ['Quadrado', 'Oval', 'Redondo'],
+                hairTypes: ['Crespo'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+                desc: 'Topo reto estruturado de forma geométrica com laterais raspadas com precisão em teto plano.',
+                tips: 'Utilize esponja nudred ou pente garfo para manter a estrutura e hidratação diária com óleos.'
+            },
+            {
+                id: 'm6',
+                name: 'Edgar Cut / Modern Mullet Fade',
+                gender: 'Masculino',
+                category: 'Curto',
+                origin: 'México / América Latina',
+                faces: ['Oval', 'Diamante', 'Quadrado'],
+                hairTypes: ['Liso', 'Ondulado'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+                desc: 'Franja frontal reta bem definida aliada a um degradê bem marcado nas têmporas.',
+                tips: 'Penteie para frente e use spray leve de fixação para manter a linha limpa.'
+            },
+            {
+                id: 'm7',
+                name: 'Buzz Cut / Military Induction',
+                gender: 'Masculino',
+                category: 'Curto',
+                origin: 'Mundial / Militar',
+                faces: ['Oval', 'Quadrado', 'Diamante'],
+                hairTypes: ['Liso', 'Ondulado', 'Cacheado', 'Crespo'],
+                maintenance: 'Baixa',
+                image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80',
+                desc: 'Corte raspado por completo no mesmo comprimento ou com leve degradê nas laterais. Praticidade extrema.',
+                tips: 'Não necessita estilização. Recomenda-se uso de protetor solar no couro cabeludo.'
+            },
+
+            // FEMININOS
+            {
+                id: 'f1',
+                name: 'Wolf Cut / Shag Moderno',
+                gender: 'Feminino',
+                category: 'Médio',
+                origin: 'Japão / Tendência Global',
+                faces: ['Oval', 'Redondo', 'Coração', 'Diamante'],
+                hairTypes: ['Liso', 'Ondulado', 'Cacheado'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+                desc: 'Mistura do mullet com o clássico shag. Possui camadas desconectadas e volumosas com franja cortina.',
+                tips: 'Aplique mousse de volume e amasse os fios com o difusor.'
+            },
+            {
+                id: 'f2',
+                name: 'Butterfly Cut (Corte Borboleta)',
+                gender: 'Feminino',
+                category: 'Longo',
+                origin: 'EUA / Tendência Red Carpet',
+                faces: ['Oval', 'Quadrado', 'Coração', 'Redondo'],
+                hairTypes: ['Liso', 'Ondulado'],
+                maintenance: 'Alta',
+                image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80',
+                desc: 'Camadas curtas ao redor do rosto que emolduram o queixo combinadas com camadas longas nas costas.',
+                tips: 'Escove as camadas para fora com secador e escova redonda grande para efeito esvoaçante.'
+            },
+            {
+                id: 'f3',
+                name: 'French Bob com Franja',
+                gender: 'Feminino',
+                category: 'Curto',
+                origin: 'França / Paris',
+                faces: ['Oval', 'Coração', 'Diamante'],
+                hairTypes: ['Liso', 'Ondulado'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80',
+                desc: 'Chanel curto na altura dos lábios com franja levemente acima da sobrancelha. Elegância atemporal.',
+                tips: 'Deixe secar ao natural com óleo finalizador nas pontas para ar vintage chic.'
+            },
+            {
+                id: 'f4',
+                name: 'Pixie Cut Texturizado',
+                gender: 'Feminino',
+                category: 'Curto',
+                origin: 'Global / Hollywood',
+                faces: ['Oval', 'Coração', 'Diamante'],
+                hairTypes: ['Liso', 'Ondulado', 'Cacheado', 'Crespo'],
+                maintenance: 'Baixa',
+                image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+                desc: 'Corte bastante curto nas laterais e nuca, mantendo fios levemente mais longos no topo para estilização.',
+                tips: 'Pomada modeladora suave para destacar mechas e dar brilho.'
+            },
+            {
+                id: 'f5',
+                name: 'Corte Black Power & Afro Sphere',
+                gender: 'Feminino',
+                category: 'Médio',
+                origin: 'Global / Cultura Afro',
+                faces: ['Oval', 'Redondo', 'Quadrado'],
+                hairTypes: ['Cacheado', 'Crespo'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80',
+                desc: 'Escultura arredondada que celebra o volume e a textura natural dos cabelos crespos e cacheados.',
+                tips: 'Umidifique com borrifador de água e creme de pentear rico em óleos, use pente garfo para erguer a raiz.'
+            },
+            {
+                id: 'f6',
+                name: 'Long Layers com Curtain Bangs',
+                gender: 'Feminino',
+                category: 'Longo',
+                origin: 'EUA / Europa',
+                faces: ['Oval', 'Redondo', 'Quadrado', 'Coração', 'Triangular'],
+                hairTypes: ['Liso', 'Ondulado', 'Cacheado'],
+                maintenance: 'Média',
+                image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80',
+                desc: 'Cabelo longo repicado em camadas suaves acompanhado por franja cortina dividida ao meio.',
+                tips: 'Modelação rápida das pontas com modelador de cachos ou escova rotativa.'
+            },
+
+            // UNISSEX / ESTILOS UNIVERSAIS
+            {
+                id: 'u1',
+                name: 'Dreadlocks Stylized / Sisterlocks',
+                gender: 'Unissex',
+                category: 'Longo',
+                origin: 'Jamaica / África / Ancestral',
+                faces: ['Oval', 'Quadrado', 'Diamante', 'Redondo'],
+                hairTypes: ['Cacheado', 'Crespo'],
+                maintenance: 'Baixa',
+                image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=600&q=80',
+                desc: 'Fios entrelaçados em mechas cilíndricas cheias de significado e estilo único.',
+                tips: 'Lavagem com xampu antirresíduos e secagem completa para manter a saúde do couro cabeludo.'
+            },
+            {
+                id: 'u2',
+                name: 'Mullet Retrô 80s',
+                gender: 'Unissex',
+                category: 'Médio',
+                origin: 'Austrália / EUA',
+                faces: ['Oval', 'Diamante', 'Coração'],
+                hairTypes: ['Liso', 'Ondulado', 'Cacheado'],
+                maintenance: 'Baixa',
+                image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80',
+                desc: 'Curto na frente e nas laterais com comprimento considerável na nuca. Vibe alternativa audaciosa.',
+                tips: 'Ative a textura com spray de sal marinho (sea salt spray).'
+            }
+        ];
+
+        /* ==========================================================================
+           2. QUESTIONNAIRE DATASET (15 QUESTIONS)
+           ========================================================================== */
+        const QUIZ_QUESTIONS = [
+            {
+                id: 1,
+                category: 'Gênero & Preferência',
+                title: 'Qual gênero de corte você está buscando?',
+                desc: 'Isso ajudará a filtrar inicialmente o catálogo.',
+                options: [
+                    { label: 'Masculino', value: 'Masculino', icon: 'user' },
+                    { label: 'Feminino', value: 'Feminino', icon: 'user-check' },
+                    { label: 'Unissex / Qualquer um', value: 'Unissex', icon: 'users' }
+                ]
+            },
+            {
+                id: 2,
+                category: 'Geometria do Rosto',
+                title: 'Qual é o formato aproximado do seu rosto?',
+                desc: 'O formato do rosto determina quais ângulos o corte deve harmonizar.',
+                options: [
+                    { label: 'Oval (Harmônico / Proporcional)', value: 'Oval', icon: 'circle' },
+                    { label: 'Redondo (Largura e altura similares)', value: 'Redondo', icon: 'disc' },
+                    { label: 'Quadrado (Maxilar bem marcado)', value: 'Quadrado', icon: 'square' },
+                    { label: 'Coração / Invertido (Testa larga e queixo fino)', value: 'Coração', icon: 'heart' },
+                    { label: 'Diamante (Maçãs do rosto proeminentes)', value: 'Diamante', icon: 'gem' },
+                    { label: 'Triangular (Base do maxilar mais larga)', value: 'Triangular', icon: 'triangle' }
+                ]
+            },
+            {
+                id: 3,
+                category: 'Textura Natural',
+                title: 'Qual é o seu tipo e textura natural de cabelo?',
+                desc: 'Respeitar o caindo natural dos fios garante praticidade.',
+                options: [
+                    { label: 'Liso (Pouca ou nenhuma onda)', value: 'Liso', icon: 'minus' },
+                    { label: 'Ondulado (Formato em "S" leve)', value: 'Ondulado', icon: 'waves' },
+                    { label: 'Cacheado (Cachos definidos ou mola)', value: 'Cacheado', icon: 'orbit' },
+                    { label: 'Crespo (Cachos muito fechados em "Z")', value: 'Crespo', icon: 'sparkle' }
+                ]
+            },
+            {
+                id: 4,
+                category: 'Espessura do Fio',
+                title: 'Como você descreve a espessura individual dos seus fios?',
+                desc: 'Cabelos finos pedem cortes com ilusão de volume; grossos exigem controle.',
+                options: [
+                    { label: 'Finos / Delicados', value: 'Fino', icon: 'feather' },
+                    { label: 'Médios / Normais', value: 'Médio', icon: 'check' },
+                    { label: 'Grossos / Volumosos e pesados', value: 'Grosso', icon: 'layers' }
+                ]
+            },
+            {
+                id: 5,
+                category: 'Densidade Capilar',
+                title: 'Qual a quantidade/densidade de cabelo na sua cabeça?',
+                desc: 'Influencia no grau de desfiado ou preenchimento do corte.',
+                options: [
+                    { label: 'Pouco / Fios ralo', value: 'Ralo', icon: 'cloud-drizzle' },
+                    { label: 'Quantidade Normal / Média', value: 'Normal', icon: 'cloud' },
+                    { label: 'Muito Cabelo / Muito denso', value: 'Muita', icon: 'cloud-lightning' }
+                ]
+            },
+            {
+                id: 6,
+                category: 'Linha Frontal & Testa',
+                title: 'Como é o desenho da sua linha de nascimento do cabelo?',
+                desc: 'Determina se franjas ou degradês curtos serão recomendados.',
+                options: [
+                    { label: 'Linha Reta / Sem entradas', value: 'Reto', icon: 'minus' },
+                    { label: 'Entradas Leves ou Moderadas', value: 'Entradas', icon: 'chevron-up' },
+                    { label: 'Testa Alta ou Entradas Acentuadas', value: 'TestaAlta', icon: 'chevrons-up' }
+                ]
+            },
+            {
+                id: 7,
+                category: 'Estilo & Vibe Pessoal',
+                title: 'Qual estilo descreve melhor sua personalidade no dia a dia?',
+                desc: 'O corte deve alinhar-se com suas roupas e ambiente social.',
+                options: [
+                    { label: 'Clássico / Executivo / Alinhado', value: 'Clássico', icon: 'briefcase' },
+                    { label: 'Moderno / Urbano / Trend', value: 'Moderno', icon: 'zap' },
+                    { label: 'Descolado / Alternativo / Casual', value: 'Alternativo', icon: 'music' },
+                    { label: 'Minimalista / Prático', value: 'Minimalista', icon: 'smile' }
+                ]
+            },
+            {
+                id: 8,
+                category: 'Tempo Diário',
+                title: 'Quanto tempo você deseja dedicar para arrumar o cabelo de manhã?',
+                desc: 'Sua rotina dita o nível de manutenção aceitável.',
+                options: [
+                    { label: 'Menos de 2 minutos (Lavar e sair)', value: 'Baixa', icon: 'clock-1' },
+                    { label: '5 a 10 minutos (Passar pomada ou creme)', value: 'Média', icon: 'clock-5' },
+                    { label: '15+ minutos (Uso de secador/prancha)', value: 'Alta', icon: 'clock-12' }
+                ]
+            },
+            {
+                id: 9,
+                category: 'Ida ao Salão/Barbearia',
+                title: 'Com que frequência você quer ir cortar o cabelo?',
+                desc: 'Cortes com degradê exigem retoches frequentes.',
+                options: [
+                    { label: 'A cada 15 dias (Sempre impecável)', value: 'Alta', icon: 'calendar-1' },
+                    { label: 'Mensalmente (Padrão)', value: 'Média', icon: 'calendar' },
+                    { label: 'A cada 2 ou 3 meses (Deixar crescer)', value: 'Baixa', icon: 'calendar-range' }
+                ]
+            },
+            {
+                id: 10,
+                category: 'Comprimento Desejado',
+                title: 'Qual o comprimento ideal de cabelo que prefere manter?',
+                desc: 'A escolha base para a seleção de referências.',
+                options: [
+                    { label: 'Muito Curto / Raspado', value: 'Curto', icon: 'scissors' },
+                    { label: 'Curto Padrão', value: 'Curto', icon: 'user' },
+                    { label: 'Médio (Na altura da orelha/ombros)', value: 'Médio', icon: 'user' },
+                    { label: 'Longo (Abaixo dos ombros)', value: 'Longo', icon: 'sparkles' }
+                ]
+            },
+            {
+                id: 11,
+                category: 'Volume Desejado',
+                title: 'Qual nível de volume você quer no topo e laterais?',
+                desc: 'Alguns cortes agregam bastante altura ou expansão.',
+                options: [
+                    { label: 'Pouco Volume / Discreto e baixinho', value: 'Pouco', icon: 'arrow-down' },
+                    { label: 'Volume Controlado / Equilibrado', value: 'Médio', icon: 'arrow-right' },
+                    { label: 'Máximo Volume / Texturizado e alto', value: 'Alto', icon: 'arrow-up' }
+                ]
+            },
+            {
+                id: 12,
+                category: 'Uso de Produtos',
+                title: 'Você concorda em usar produtos de styling diários?',
+                desc: 'Pomadas, óleos, sprays de fixação ou ativador de cachos.',
+                options: [
+                    { label: 'Apenas lavar com xampu/condicionador', value: 'Nenhum', icon: 'droplet' },
+                    { label: 'Aceito usar pomada leve ou creme de pentear', value: 'Leve', icon: 'sparkles' },
+                    { label: 'Gosto de rotina completa com spray, secador e pomada', value: 'Completo', icon: 'sun' }
+                ]
+            },
+            {
+                id: 13,
+                category: 'Barba ou Acessórios',
+                title: 'Você possui barba ou utiliza óculos no dia a dia?',
+                desc: 'Ajuda a escolher cortes que não sobrecarreguem as laterais do rosto.',
+                options: [
+                    { label: 'Uso óculos de grau/sol com frequência', value: 'Oculos', icon: 'glasses' },
+                    { label: 'Possuo barba (Curta ou Longa)', value: 'Barba', icon: 'smile' },
+                    { label: 'Sem barba e sem óculos', value: 'Limpo', icon: 'check-circle-2' }
+                ]
+            },
+            {
+                id: 14,
+                category: 'Fator de Camuflagem',
+                title: 'Há algo na sua fisionomia que deseja disfarçar ou suavizar?',
+                desc: 'O visagismo usa cabelos para harmonizar pontos específicos.',
+                options: [
+                    { label: 'Disfarçar testa alta ou entradas', value: 'Testa', icon: 'shield' },
+                    { label: 'Suavizar bochechas ou arredondado do rosto', value: 'Rosto', icon: 'minimize-2' },
+                    { label: 'Realçar o maxilar / Estrutura óssea', value: 'Maxilar', icon: 'maximize-2' },
+                    { label: 'Não quero disfarçar nada em especial', value: 'Nenhum', icon: 'thumbs-up' }
+                ]
+            },
+            {
+                id: 15,
+                category: 'Objetivo Principal',
+                title: 'Qual é seu principal objetivo com o novo visual?',
+                desc: 'O toque final para definirmos o corte campeão.',
+                options: [
+                    { label: 'Mudar radicalmente de estilo', value: 'Radical', icon: 'zap' },
+                    { label: 'Passar imagem mais profissional e respeitável', value: 'Profissional', icon: 'award' },
+                    { label: 'Ganhar praticidade no cotidiano', value: 'Praticidade', icon: 'thumbs-up' },
+                    { label: 'Rejuvenescer e transmitir modernidade', value: 'Jovem', icon: 'sparkles' }
+                ]
+            }
+        ];
+
+        /* ==========================================================================
+           3. APPLICATION STATE MANAGEMENT
+           ========================================================================== */
+        let currentTab = 'catalog';
+        let currentGenderFilter = 'all';
+        let userFavorites = JSON.parse(localStorage.getItem('hair_favs') || '[]');
+        
+        // Quiz State
+        let currentQuizIndex = 0;
+        let quizAnswers = {};
+
+        /* ==========================================================================
+           4. INITIALIZATION & TAB NAVIGATION
+           ========================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCatalog();
+            updateFavBadge();
+            lucide.createIcons();
+        });
+
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Hide all views
+            document.getElementById('view-catalog').classList.add('hidden');
+            document.getElementById('view-quiz').classList.add('hidden');
+            document.getElementById('view-results').classList.add('hidden');
+            document.getElementById('view-favorites').classList.add('hidden');
+
+            // Reset Nav Styling
+            const navIds = ['nav-catalog', 'nav-quiz', 'nav-favorites'];
+            navIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.className = "px-5 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white transition-all duration-200 hover:bg-gray-800/60";
+                }
+            });
+
+            // Activate Target View
+            if (tab === 'catalog') {
+                document.getElementById('view-catalog').classList.remove('hidden');
+                document.getElementById('nav-catalog').className = "px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-gold-500 text-dark-900 shadow";
+            } else if (tab === 'quiz') {
+                document.getElementById('view-quiz').classList.remove('hidden');
+                document.getElementById('nav-quiz').className = "px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-gold-500 text-dark-900 shadow";
+                renderQuizQuestion();
+            } else if (tab === 'results') {
+                document.getElementById('view-results').classList.remove('hidden');
+            } else if (tab === 'favorites') {
+                document.getElementById('view-favorites').classList.remove('hidden');
+                document.getElementById('nav-favorites').className = "px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 bg-gold-500 text-dark-900 shadow";
+                renderFavorites();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(() => lucide.createIcons(), 50);
+        }
+
+        /* ==========================================================================
+           5. CATALOG RENDER & FILTERING LOGIC
+           ========================================================================== */
+        function setGenderFilter(gender) {
+            currentGenderFilter = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.className = "gender-btn flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-semibold text-gray-400 hover:text-white transition-all";
+            });
+            document.getElementById(`gender-${gender}`).className = "gender-btn flex-1 md:flex-none px-4 py-1.5 rounded-lg text-xs font-semibold transition-all bg-gold-500 text-dark-900";
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const searchVal = document.getElementById('catalog-search').value.toLowerCase();
+            const faceVal = document.getElementById('filter-face').value;
+            const hairVal = document.getElementById('filter-hair').value;
+            const lengthVal = document.getElementById('filter-length').value;
+            const mainVal = document.getElementById('filter-maintenance').value;
+
+            const filtered = HAIRCUTS_DB.filter(cut => {
+                // Gender Filter
+                if (currentGenderFilter !== 'all') {
+                    if (currentGenderFilter === 'masculino' && cut.gender !== 'Masculino' && cut.gender !== 'Unissex') return false;
+                    if (currentGenderFilter === 'feminino' && cut.gender !== 'Feminino' && cut.gender !== 'Unissex') return false;
+                    if (currentGenderFilter === 'unissex' && cut.gender !== 'Unissex') return false;
+                }
+
+                // Search Filter
+                if (searchVal && !cut.name.toLowerCase().includes(searchVal) && !cut.origin.toLowerCase().includes(searchVal) && !cut.desc.toLowerCase().includes(searchVal)) {
+                    return false;
+                }
+
+                // Face Filter
+                if (faceVal && !cut.faces.includes(faceVal)) return false;
+
+                // Hair Filter
+                if (hairVal && !cut.hairTypes.includes(hairVal)) return false;
+
+                // Length Filter
+                if (lengthVal && cut.category !== lengthVal) return false;
+
+                // Maintenance Filter
+                if (mainVal && cut.maintenance !== mainVal) return false;
+
+                return true;
+            });
+
+            renderGrid(filtered, 'catalog-grid');
+            document.getElementById('cuts-counter').textContent = filtered.length;
+        }
+
+        function resetFilters() {
+            document.getElementById('catalog-search').value = '';
+            document.getElementById('filter-face').value = '';
+            document.getElementById('filter-hair').value = '';
+            document.getElementById('filter-length').value = '';
+            document.getElementById('filter-maintenance').value = '';
+            setGenderFilter('all');
+        }
+
+        function renderCatalog() {
+            applyFilters();
+        }
+
+        function renderGrid(cutsList, targetContainerId) {
+            const container = document.getElementById(targetContainerId);
+            if (!container) return;
+
+            if (cutsList.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 glass-panel rounded-2xl border border-gray-800 space-y-3">
+                        <i data-lucide="scissors" class="w-10 h-10 text-gray-600 mx-auto"></i>
+                        <p class="text-sm font-semibold text-gray-400">Nenhum corte encontrado com os filtros selecionados.</p>
+                        <button onclick="resetFilters()" class="text-xs text-gold-400 hover:underline">Resetar filtros</button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            container.innerHTML = cutsList.map(cut => {
+                const isFav = userFavorites.includes(cut.id);
+                return `
+                    <div class="glass-panel rounded-2xl border border-gray-800/80 overflow-hidden hover:border-gold-500/50 transition-all duration-300 flex flex-col group">
+                        <!-- Image Container -->
+                        <div class="relative h-52 overflow-hidden bg-dark-900 cursor-pointer" onclick="openModal('${cut.id}')">
+                            <img src="${cut.image}" alt="${cut.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-80"></div>
+                            
+                            <!-- Badges -->
+                            <div class="absolute top-3 left-3 flex gap-1.5">
+                                <span class="px-2.5 py-1 rounded-full bg-dark-900/80 backdrop-blur-md text-gold-400 text-[10px] font-bold border border-gold-500/30">
+                                    ${cut.gender}
+                                </span>
+                            </div>
+
+                            <!-- Favorite Button -->
+                            <button onclick="event.stopPropagation(); toggleFavorite('${cut.id}')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-dark-900/80 backdrop-blur-md border border-gray-700 text-gray-300 hover:text-rose-400 flex items-center justify-center transition-colors">
+                                <i data-lucide="bookmark" class="w-4 h-4 ${isFav ? 'fill-rose-500 text-rose-500' : ''}"></i>
+                            </button>
+
+                            <div class="absolute bottom-3 left-3 right-3">
+                                <span class="text-[10px] text-gray-400 block">${cut.origin}</span>
+                                <h4 class="text-base font-bold font-serif text-white group-hover:text-gold-400 transition-colors">${cut.name}</h4>
+                            </div>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                            <div class="space-y-2">
+                                <div class="flex flex-wrap gap-1">
+                                    ${cut.faces.slice(0, 3).map(f => `<span class="bg-gray-800 text-gray-300 text-[10px] px-2 py-0.5 rounded-md border border-gray-700/50">${f}</span>`).join('')}
+                                </div>
+                                <p class="text-xs text-gray-400 line-clamp-2">${cut.desc}</p>
+                            </div>
+
+                            <div class="pt-2 border-t border-gray-800/80 flex items-center justify-between text-xs">
+                                <span class="text-gray-500 text-[10px]">Manutenção: <strong class="text-gray-300 font-semibold">${cut.maintenance}</strong></span>
+                                <button onclick="openModal('${cut.id}')" class="text-gold-400 hover:text-gold-300 font-semibold text-xs flex items-center gap-1">
+                                    Ver Detalhes <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        /* ==========================================================================
+           6. QUIZ QUESTIONNAIRE LOGIC
+           ========================================================================== */
+        function startQuiz() {
+            currentQuizIndex = 0;
+            quizAnswers = {};
+            switchTab('quiz');
+        }
+
+        function renderQuizQuestion() {
+            const q = QUIZ_QUESTIONS[currentQuizIndex];
+            const total = QUIZ_QUESTIONS.length;
+            const percent = Math.round(((currentQuizIndex + 1) / total) * 100);
+
+            // Update Progress Header
+            document.getElementById('quiz-step-indicator').textContent = `Pergunta ${currentQuizIndex + 1} de ${total}`;
+            document.getElementById('quiz-percent-text').textContent = `${percent}% Concluído`;
+            document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+
+            // Question Details
+            document.getElementById('q-category').textContent = q.category;
+            document.getElementById('q-title').textContent = q.title;
+            document.getElementById('q-desc').textContent = q.desc;
+
+            // Render Options Buttons
+            const selectedVal = quizAnswers[q.id];
+            const optionsContainer = document.getElementById('q-options');
+            optionsContainer.innerHTML = q.options.map(opt => {
+                const isSelected = selectedVal === opt.value;
+                return `
+                    <button onclick="selectQuizOption('${opt.value}')" class="p-4 rounded-2xl text-left border transition-all duration-200 flex items-center gap-3 ${
+                        isSelected 
+                        ? 'border-gold-500 bg-gold-500/10 text-white shadow-lg shadow-gold-500/10' 
+                        : 'border-gray-800 bg-dark-900/60 text-gray-300 hover:border-gray-700 hover:bg-dark-800'
+                    }">
+                        <div class="w-8 h-8 rounded-xl ${isSelected ? 'gold-gradient-bg text-dark-900' : 'bg-gray-800 text-gray-400'} flex items-center justify-center shrink-0">
+                            <i data-lucide="${opt.icon}" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-xs font-semibold leading-snug">${opt.label}</span>
+                    </button>
+                `;
+            }).join('');
+
+            // Navigation Buttons State
+            document.getElementById('quiz-prev-btn').style.visibility = currentQuizIndex === 0 ? 'hidden' : 'visible';
+            
+            const nextBtn = document.getElementById('quiz-next-btn');
+            if (selectedVal) {
+                nextBtn.disabled = false;
+                nextBtn.className = "px-6 py-2.5 rounded-xl gold-gradient-bg text-dark-900 font-bold text-xs shadow-lg hover:scale-105 transition-all flex items-center gap-2 cursor-pointer";
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.className = "px-6 py-2.5 rounded-xl gold-gradient-bg text-dark-900 opacity-50 cursor-not-allowed text-xs font-bold transition-all flex items-center gap-2";
+            }
+
+            // Text change for last question
+            nextBtn.innerHTML = currentQuizIndex === total - 1 
+                ? `Calcular Diagnóstico <i data-lucide="sparkles" class="w-4 h-4"></i>` 
+                : `Próxima <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+
+            lucide.createIcons();
+        }
+
+        function selectQuizOption(val) {
+            const q = QUIZ_QUESTIONS[currentQuizIndex];
+            quizAnswers[q.id] = val;
+            renderQuizQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQuizIndex > 0) {
+                currentQuizIndex--;
+                renderQuizQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const total = QUIZ_QUESTIONS.length;
+            if (currentQuizIndex < total - 1) {
+                currentQuizIndex++;
+                renderQuizQuestion();
+            } else {
+                calculateResults();
+            }
+        }
+
+        /* ==========================================================================
+           7. MATCHING ALGORITHM & RESULTS DISPLAY
+           ========================================================================== */
+        function calculateResults() {
+            // Retrieve User Answers
+            const prefGender = quizAnswers[1] || 'Unissex';
+            const faceShape = quizAnswers[2] || 'Oval';
+            const hairType = quizAnswers[3] || 'Liso';
+            const maintenancePref = quizAnswers[8] || 'Média';
+            const targetLength = quizAnswers[10] || 'Curto';
+
+            // Calculate Score for each Haircut in Database
+            const scoredCuts = HAIRCUTS_DB.map(cut => {
+                let score = 50; // Base score
+
+                // 1. Gender Match
+                if (prefGender === cut.gender || cut.gender === 'Unissex' || prefGender === 'Unissex') {
+                    score += 20;
+                } else {
+                    score -= 30; // Gender mismatch penalty
+                }
+
+                // 2. Face Shape Match
+                if (cut.faces.includes(faceShape)) {
+                    score += 20;
+                }
+
+                // 3. Hair Texture Match
+                if (cut.hairTypes.includes(hairType)) {
+                    score += 15;
+                }
+
+                // 4. Maintenance Match
+                if (cut.maintenance === maintenancePref) {
+                    score += 10;
+                }
+
+                // 5. Length Match
+                if (cut.category === targetLength) {
+                    score += 10;
+                }
+
+                // Clamp Score to max 99%
+                const finalPercentage = Math.min(Math.max(score, 45), 98);
+
+                return {
+                    ...cut,
+                    matchScore: finalPercentage
+                };
+            });
+
+            // Sort by highest match score
+            scoredCuts.sort((a, b) => b.matchScore - a.matchScore);
+
+            const top3 = scoredCuts.slice(0, 3);
+            const others = scoredCuts.slice(3, 7);
+
+            renderResultsView(top3, others);
+            switchTab('results');
+        }
+
+        function renderResultsView(top3, others) {
+            // Render Top 3 Cards with custom explanation
+            const topContainer = document.getElementById('top-matches-container');
+            topContainer.innerHTML = top3.map((cut, idx) => {
+                const badges = ['GOLD MATCH', 'SILVER MATCH', 'BRONZE MATCH'];
+                const isFav = userFavorites.includes(cut.id);
+
+                return `
+                    <div class="glass-panel rounded-3xl border border-gold-500/40 p-5 space-y-4 relative overflow-hidden flex flex-col justify-between shadow-xl">
+                        <!-- Top Ribbon -->
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full gold-gradient-bg text-dark-900">
+                                ${badges[idx]} • ${cut.matchScore}% MATCH
+                            </span>
+                            <button onclick="toggleFavorite('${cut.id}')" class="text-gray-400 hover:text-rose-400">
+                                <i data-lucide="bookmark" class="w-5 h-5 ${isFav ? 'fill-rose-500 text-rose-500' : ''}"></i>
+                            </button>
+                        </div>
+
+                        <!-- Cut Image -->
+                        <div class="h-48 rounded-2xl overflow-hidden relative cursor-pointer" onclick="openModal('${cut.id}')">
+                            <img src="${cut.image}" alt="${cut.name}" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-3 left-3">
+                                <span class="text-[10px] text-gold-400 font-semibold uppercase">${cut.gender}</span>
+                                <h4 class="text-xl font-serif font-bold text-white">${cut.name}</h4>
+                            </div>
+                        </div>
+
+                        <!-- Match Explanation -->
+                        <div class="space-y-2 bg-dark-900/60 p-3 rounded-xl border border-gray-800 text-xs text-gray-300">
+                            <p class="text-[11px] font-semibold text-gold-400 flex items-center gap-1">
+                                <i data-lucide="check" class="w-3.5 h-3.5"></i> Por que combina com você:
+                            </p>
+                            <p class="text-gray-400 text-[11px] leading-relaxed">
+                                Ideal para seu formato de rosto <strong>${quizAnswers[2] || 'Oval'}</strong> e textura de cabelo <strong>${quizAnswers[3] || 'Liso'}</strong>.
+                            </p>
+                        </div>
+
+                        <button onclick="openModal('${cut.id}')" class="w-full py-2.5 rounded-xl gold-gradient-bg text-dark-900 font-bold text-xs shadow hover:scale-[1.02] transition-transform">
+                            Ver Dicas de Estilização
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            // Render Other Compatible Cards
+            renderGrid(others, 'other-matches-container');
+            lucide.createIcons();
+        }
+
+        /* ==========================================================================
+           8. FAVORITES MANAGEMENT
+           ========================================================================== */
+        function toggleFavorite(id) {
+            if (userFavorites.includes(id)) {
+                userFavorites = userFavorites.filter(favId => favId !== id);
+            } else {
+                userFavorites.push(id);
+            }
+            localStorage.setItem('hair_favs', JSON.stringify(userFavorites));
+            updateFavBadge();
+
+            // Refresh Current View
+            if (currentTab === 'catalog') applyFilters();
+            if (currentTab === 'favorites') renderFavorites();
+        }
+
+        function updateFavBadge() {
+            const badge = document.getElementById('fav-count-badge');
+            if (userFavorites.length > 0) {
+                badge.textContent = userFavorites.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function renderFavorites() {
+            const favCuts = HAIRCUTS_DB.filter(c => userFavorites.includes(c.id));
+            const container = document.getElementById('favorites-grid');
+            
+            if (favCuts.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16 glass-panel rounded-3xl border border-gray-800 space-y-3">
+                        <i data-lucide="bookmark" class="w-12 h-12 text-gray-600 mx-auto"></i>
+                        <h3 class="text-base font-bold text-gray-300">Nenhum corte salvo ainda.</h3>
+                        <p class="text-xs text-gray-500 max-w-sm mx-auto">Navegue pelo catálogo e clique no ícone de marcador para salvar suas referências favoritas.</p>
+                        <button onclick="switchTab('catalog')" class="px-4 py-2 rounded-xl gold-gradient-bg text-dark-900 font-bold text-xs mt-2">
+                            Explorar Catálogo
+                        </button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            renderGrid(favCuts, 'favorites-grid');
+        }
+
+        /* ==========================================================================
+           9. MODAL DETAILED VIEW
+           ========================================================================== */
+        function openModal(id) {
+            const cut = HAIRCUTS_DB.find(c => c.id === id);
+            if (!cut) return;
+
+            document.getElementById('m-image').src = cut.image;
+            document.getElementById('m-title').textContent = cut.name;
+            document.getElementById('m-gender').textContent = cut.gender;
+            document.getElementById('m-origin').textContent = cut.origin;
+            document.getElementById('m-desc').textContent = cut.desc;
+            document.getElementById('m-faces').textContent = cut.faces.join(', ');
+            document.getElementById('m-hair').textContent = cut.hairTypes.join(', ');
+            document.getElementById('m-maintenance').textContent = cut.maintenance;
+            document.getElementById('m-tips').textContent = cut.tips;
+
+            const isFav = userFavorites.includes(cut.id);
+            const favBtn = document.getElementById('m-fav-btn');
+            favBtn.onclick = () => { toggleFavorite(cut.id); openModal(cut.id); };
+            favBtn.innerHTML = `<i data-lucide="bookmark" class="w-4 h-4 ${isFav ? 'fill-rose-500 text-rose-500' : ''}"></i> ${isFav ? 'Salvo' : 'Favoritar'}`;
+
+            const modal = document.getElementById('haircut-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('haircut-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+    </script>
+</body>
+</html>
